@@ -1,0 +1,16 @@
+<input
+  [ngbPopover]="calendarContent"
+  placement="bottom"
+  container="body"
+  placeholder="dblclick to choose date"
+  (dblclick)="onInputDblClick($event)"
+  triggers="manual"
+  style="width: 100%;height: 100%;"
+  [(ngModel)]="txtmodel"
+/>
+
+<ng-template #calendarContent>
+  <div>
+    <ngb-datepicker #dp [(ngModel)]="datemodel" (navigate)="date = $event.next"></ngb-datepicker>
+  </div>
+</ng-template>

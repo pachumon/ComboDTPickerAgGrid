@@ -1,0 +1,76 @@
+<input
+  [ngClass]="ngControl?.valid ? 'ng-valid' : 'ng-invalid'"
+  style="width: 100%;height: 100%;"
+  (blur)="inputBlur($event)"
+  [ngModel]="dateString | date: inputDatetimeFormat | datetime"
+  (change)="onInputChange($event)"
+  (ngModelChange)="modelChangehandler($event)"
+  [disabled]="disabled"
+  placeholder="Select Date/Time"
+  (dblclick)="onInputDblClick($event, dp)"
+  [ngbPopover]="calendarContent"
+  triggers="manual"
+  container="body"
+/>
+
+<ng-template #calendarContent>
+  <div class="ngb">
+    <div class="ngb" *ngIf="!showTimePickerToggle">
+      <ngb-datepicker
+        #dp
+        name="datepicker"
+        [ngModel]="datetime"
+        (ngModelChange)="onDateChange($event)"
+        (select)="controlSelect($event)"
+      >
+      </ngb-datepicker>
+      <button
+        class="btn btn-block btn-outline-secondary"
+        [disabled]="disableTimeSelection"
+        [ngbPopover]="timePickerContent"
+        type="button"
+        (click)="toggleDateTimeState($event)"
+      >
+        <fa-icon [icon]="['fas', 'clock']"></fa-icon>
+      </button>
+    </div>
+    <div class="ngb" *ngIf="showTimePickerToggle">
+      <button
+        class="btn btn-block btn-outline-secondary"
+        [ngbPopover]="calendarContent"
+        type="button"
+        (click)="toggleDateTimeState($event)"
+      >
+        <fa-icon [icon]="['fas', 'calendar']"></fa-icon>
+      </button>
+      <div class="ngb" class="mt-auto">
+        <ngb-timepicker
+          #tp
+          name="timepicker"
+          [ngModel]="datetime"
+          [meridian]="true"
+          (ngModelChange)="onTimeChange($event)"
+          [seconds]="false"
+          [hourStep]="hourStep"
+          [minuteStep]="minuteStep"
+          [secondStep]="secondStep"
+        ></ngb-timepicker>
+      </div>
+    </div>
+
+    <div class="ngb" style="width: 100%;" *ngIf="!showTimePickerToggle" style="padding: 1px;">
+      <button
+        (click)="selecttoday(dp)"
+        class="btn btn-sm btn-primary pull-left"
+      >
+        Today
+      </button>
+      <button style="float: right;"
+        (click)="selectreset(dp)"
+        class="btn btn-sm btn-danger pull-right"
+      >
+        Clear
+      </button>
+    </div>
+  </div>
+</ng-template>

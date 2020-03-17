@@ -1,0 +1,37 @@
+<div class="container-fluid">
+  <div class="jumbotron">
+    <h6>
+      Below is sample implementation of the <a href="https://www.ag-grid.com/">Ag Grid</a> with a custom Date Time
+      picker. Each of the columns in the below <a href="https://www.ag-grid.com/">Ag Grid</a> Implementation represents
+      a different implementation of the Date time Picker in the editor template
+      for the first two columns and a date picker alone in the last column. <br><br>
+      <ul>
+        <li>
+          Column 1 SingleViewDTPicker : Here the Date & Time Picker is presented
+          in a single view.
+        </li>
+        <li>
+          Column 2 MultiViewDTPicker : Here the Date & Time Picker is presented
+          in a separate views.
+        </li>
+        <li>
+          Column 2 SimpleDatePicker : Here the Date Picker is presented in the
+          edit view
+        </li>
+      </ul>
+      <b>Double Click on the Grid Data Cells for the editor mode view to display
+        & Double click in the editor textbox for the Date\Time picker controls
+        to display.
+      </b>
+    </h6>
+  </div>
+  <div class="row" style="padding-left: 20%;">
+    <ag-grid-angular
+      #agGrid
+      style="width: 500px; height: 300px;"
+      class="ag-theme-balham"
+      [gridOptions]="gridOptions"
+    >
+    </ag-grid-angular>
+  </div>
+</div>
